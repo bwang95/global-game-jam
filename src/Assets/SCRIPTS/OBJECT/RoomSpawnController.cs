@@ -3,7 +3,7 @@ using System.Collections;
 
 public class RoomSpawnController : MonoBehaviour {
 
-	GameObject room = transform.parent.gameObject;
+
 	Vector3 spawnOrigin;
 	public GameObject[] toSpawn;
 
@@ -19,7 +19,7 @@ public class RoomSpawnController : MonoBehaviour {
 	void SpawnObject (GameObject g, Vector3 relativePosition){
 		Vector3 spawnPosition = relativePosition + relativePosition;
 		Instantiate(g, spawnPosition, Quaternion.identity);
-		EnemyLimiter s = g.GetComponent(typeof(EnemyLimiter));
+		EnemyLimiter s = (EnemyLimiter) g.GetComponent(typeof(EnemyLimiter));
 		s.setParentRoom(spawnOrigin);
 	}
 }
