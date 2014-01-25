@@ -4,12 +4,12 @@ using System.Collections;
 public class TestGridSpawn : MonoBehaviour {
 
 	public GameObject Token;
-	public 
+	public int spacing = 30;
 
 	void Start () {
 		for(int i = -5; i <= 5; i++){
 			for(int n = -5; n <= 5; n++){
-				Vector3 locToSpawn = new Vector3(i,n,0);
+				Vector3 locToSpawn = new Vector3(i*spacing,n*spacing,0);
 				Instantiate(Token, locToSpawn, Quaternion.identity);
 			}
 		}

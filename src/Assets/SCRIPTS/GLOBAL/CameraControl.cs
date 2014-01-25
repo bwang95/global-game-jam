@@ -4,6 +4,7 @@ using System.Collections;
 public class CameraControl : MonoBehaviour {
 
 	private Vector3 endLoc;
+	public GameObject player;
 
 	void Start () {
 		setPosition(new Vector3(0,0,-5));
@@ -11,16 +12,8 @@ public class CameraControl : MonoBehaviour {
 	}
 
 	void Update () {
-		if(Input.GetKeyDown("w")){
-			endLoc.y += 1;
-		}else if (Input.GetKeyDown("s")){
-			endLoc.y -= 1;
-		}
-		if(Input.GetKeyDown("a")){
-			endLoc.x -= 1;
-		}else if (Input.GetKeyDown("d")){
-			endLoc.x += 1;
-		}
+
+		endLoc = findClosestRoom();
 
 		if (!endLoc.Equals(Camera.main.transform.position)){
 			cameraMove();
@@ -32,16 +25,23 @@ public class CameraControl : MonoBehaviour {
 		if(dist.magnitude <= .001){
 			setPosition (endLoc);
 		}else{
-			Camera.main.transform.Translate(dist.x/2, dist.y/2, dist.z/2);
+			Camera.main.transform.Translate(dist.x/4, dist.y/4, dist.z/4);
 		}
 	}
 
 	Vector3 distanceBetween(Vector3 a, Vector3 b){
-		Vector3 position = Camera.main.transform.position;
 		return new Vector3(a.x-b.x, a.y - b.y, 0);
 	}
 
 	void setPosition(Vector3 a){
 		Camera.main.transform.position = a;
+	}
+
+	Vector3 findClosestRoom(){
+		Vector3 playPos = player.transform.position;
+		playPos.x = Mathf.Floor ((playPos.x + 15) / 30) * 30;
+		playPos.y = Mathf.Floor ((playPos.y + 15) / 30) * 30;
+		playPos.z = -5; 
+		return playPos;
 	}
 }

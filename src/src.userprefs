@@ -1,10 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\SCRIPTS\GLOBAL\TestGridSpawn.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\SCRIPTS\GLOBAL\CameraControl.cs">
     <Files>
+      <File FileName="Assets\SCRIPTS\GLOBAL\CameraControl.cs" Line="28" Column="64" />
+      <File FileName="Assets\SCRIPTS\GLOBAL\TestGridSpawn.cs" Line="1" Column="1" />
+      <File FileName="Assets\SCRIPTS\GLOBAL\CameraControl.cs" Line="28" Column="64" />
+      <File FileName="Assets\SCRIPTS\OBJECT\ControllerScript.cs" Line="1" Column="1" />
       <File FileName="Assets\GUI\GUILOCMANAGE.cs" Line="1" Column="1" />
-      <File FileName="Assets\SCRIPTS\GLOBAL\CameraControl.cs" Line="6" Column="25" />
-      <File FileName="Assets\SCRIPTS\GLOBAL\TestGridSpawn.cs" Line="7" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
