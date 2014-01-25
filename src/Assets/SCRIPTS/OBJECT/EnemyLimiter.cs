@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemyLimiter : MonoBehaviour {
 
-	Vector3 parentRoom; //This is the POSITION of the parent room, not the object itself.
+	public Vector3 parentRoom; //This is the POSITION of the parent room, not the object itself.
 	GameObject player;
 
 
@@ -17,9 +17,7 @@ public class EnemyLimiter : MonoBehaviour {
 	}
 
 	public void setParentRoom(Vector3 v){
-		if(parentRoom == null){
 			parentRoom = v;
-		}
 	}
 
 	public bool isWithinBounds(){

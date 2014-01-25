@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GenericEnemyBehavior : MonoBehaviour {
 
-	private GameObject player;
+	public GameObject player;
 
 	//						  	   0    90   180
 	private double[] chances = {0.50, 0.35, 0.15};
@@ -12,15 +12,13 @@ public class GenericEnemyBehavior : MonoBehaviour {
 	private static Random r = new Random();
 	private const int SPEED = 5;
 	public EnemyLimiter s;
-	public Object parent;
 	
 	void Start(){
-		parent = transform.parent;
-		s = (EnemyLimiter) transform.parent.gameObject.GetComponent(typeof(EnemyLimiter));
 		player = GameObject.FindGameObjectWithTag ("Player");
+		s = (EnemyLimiter) gameObject.GetComponent(typeof(EnemyLimiter));
+
 	}
 	void Update () {
-		s = (EnemyLimiter) transform.parent.gameObject.GetComponent(typeof(EnemyLimiter));
 		if (!s.playerWithinBounds ())
 			return;
 		//put boundaries check lol

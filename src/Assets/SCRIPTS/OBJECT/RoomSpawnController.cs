@@ -4,7 +4,7 @@ using System.Collections;
 public class RoomSpawnController : MonoBehaviour {
 
 
-	Vector3 spawnOrigin;
+	public Vector3 spawnOrigin;
 	public GameObject[] toSpawn;
 
 
