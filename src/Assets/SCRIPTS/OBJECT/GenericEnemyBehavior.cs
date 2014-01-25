@@ -10,7 +10,7 @@ public class GenericEnemyBehavior : MonoBehaviour {
 	private bool chasing = false;
 	private double duration = 0.0;
 	private static Random r = new Random();
-	private static const int SPEED = 5;
+	private int SPEED = 5;
 	
 	// Update is called once per frame
 	void Update () {
@@ -22,8 +22,8 @@ public class GenericEnemyBehavior : MonoBehaviour {
 		double x = r.nextDouble ();
 		double thresh = 0.0;
 		*/
-		if (playerWithinBounds ())
-			return;
+		//if (playerWithinBounds ())
+			//return;
 		//put boundaries check lol
 
 		float px = player.transform.position.x;
