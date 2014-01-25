@@ -10,11 +10,6 @@ public class RoomSpawnController : MonoBehaviour {
 	void Start () {
 		spawnOrigin = transform.position;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	void SpawnObject (GameObject g, Vector3 relativePosition){
 		Vector3 spawnPosition = relativePosition + relativePosition;

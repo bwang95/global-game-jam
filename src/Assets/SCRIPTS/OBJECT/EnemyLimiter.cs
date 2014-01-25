@@ -4,6 +4,8 @@ using System.Collections;
 public class EnemyLimiter : MonoBehaviour {
 
 	Vector3 parentRoom; //This is the POSITION of the parent room, not the object itself.
+	GameObject player = GameObject.FindGameObjectWithTag("Player");
+
 
 	void Start () {
 	
@@ -29,4 +31,15 @@ public class EnemyLimiter : MonoBehaviour {
 			return false;
 		}
 	}
+
+	bool playerWithinBounds(){
+		float x = parentRoom.x - player.transform.position.x;
+		float y = parentRoom.y - player.transform.position.y;
+		if(Mathf.Abs(x) <= 5 && Mathf.Abs(y) <= 5){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 }
