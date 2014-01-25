@@ -23,7 +23,7 @@ public class EnemyLimiter : MonoBehaviour {
 	public bool isWithinBounds(){
 		float x = parentRoom.x - transform.position.x;
 		float y = parentRoom.y - transform.position.y;
-		if(Mathf.Abs(x) <= 5 && Mathf.Abs(y) <= 5){
+		if(Mathf.Abs(x) <= 15 && Mathf.Abs(y) <= 15){
 			return true;
 		}else{
 			return false;
@@ -33,7 +33,7 @@ public class EnemyLimiter : MonoBehaviour {
 	public bool playerWithinBounds(){
 		float x = parentRoom.x - player.transform.position.x;
 		float y = parentRoom.y - player.transform.position.y;
-		if(Mathf.Abs(x) <= 5 && Mathf.Abs(y) <= 5){
+		if(Mathf.Abs(x) <= 15 && Mathf.Abs(y) <= 15){
 			return true;
 		}else{
 			return false;
