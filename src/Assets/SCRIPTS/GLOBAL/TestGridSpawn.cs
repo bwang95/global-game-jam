@@ -4,6 +4,7 @@ using System.Collections;
 public class TestGridSpawn : MonoBehaviour {
 
 	public GameObject Token;
+	public 
 
 	void Start () {
 		for(int i = -5; i <= 5; i++){
