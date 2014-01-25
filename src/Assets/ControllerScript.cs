@@ -23,16 +23,4 @@ public class ControllerScript : MonoBehaviour {
             rigidbody.velocity = new Vector2(x * speed, y * speed);
         else rigidbody.velocity = Vector2.zero;
 	}
-
-    /*void OnCollisionEnter(Collision c)
-    {
-        print("Collides!");
-        rigidbody.velocity = Vector2.zero;
-        colliding = true;
-    }
-
-    void OnCollisionExit(Collision c)
-    {
-        colliding = false;
-    }*/
 }
