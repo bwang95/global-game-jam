@@ -1,22 +1,12 @@
 ﻿<Properties>
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\SCRIPTS\OBJECT\RoomSpawnController.cs">
     <Files>
-      <File FileName="Assets\SCRIPTS\OBJECT\RoomSpawnController.cs" Line="1" Column="1" />
-      <File FileName="Assets\SCRIPTS\GLOBAL\CameraControl.cs" Line="1" Column="1" />
-      <File FileName="Assets\SCRIPTS\OBJECT\RoomSpawnController.cs" Line="1" Column="1" />
+      <File FileName="Assets\SCRIPTS\OBJECT\GenericEnemyBehavior.cs" Line="1" Column="1" />
       <File FileName="Assets\SCRIPTS\OBJECT\EnemyLimiter.cs" Line="1" Column="1" />
-=======
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\SCRIPTS\OBJECT\GenericEnemyBehavior.cs">
-    <Files>
-      <File FileName="Assets\SCRIPTS\OBJECT\GenericEnemyBehavior.cs" Line="6" Column="18" />
-      <File FileName="Assets\SCRIPTS\GLOBAL\TestGridSpawn.cs" Line="78" Column="1" />
-      <File FileName="Assets\SCRIPTS\GLOBAL\CameraControl.cs" Line="1" Column="1" />
+      <File FileName="Assets\SCRIPTS\OBJECT\RoomSpawnController.cs" Line="18" Column="34" />
       <File FileName="Assets\SCRIPTS\OBJECT\ControllerScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\GUI\GUILOCMANAGE.cs" Line="1" Column="1" />
->>>>>>> 40d6ba2e1d0f2a60221d21832d3ddef542c180b5
+      <File FileName="Assets\SCRIPTS\GLOBAL\TestGridSpawn.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

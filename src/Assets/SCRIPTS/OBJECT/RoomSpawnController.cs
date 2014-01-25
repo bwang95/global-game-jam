@@ -15,8 +15,8 @@ public class RoomSpawnController : MonoBehaviour {
 
 	void SpawnObject (GameObject g, Vector3 relativePosition){
 		Vector3 spawnPosition = spawnOrigin + relativePosition;
-		Instantiate(g, spawnPosition, Quaternion.identity);
-		EnemyLimiter s = (EnemyLimiter) g.GetComponent(typeof(EnemyLimiter));
+		GameObject clone = (GameObject) Instantiate(g, spawnPosition, Quaternion.identity);
+		EnemyLimiter s = (EnemyLimiter) clone.GetComponent(typeof(EnemyLimiter));
 		s.setParentRoom(spawnOrigin);
 	}
 

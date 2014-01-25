@@ -11,13 +11,16 @@ public class GenericEnemyBehavior : MonoBehaviour {
 	private double duration = 0.0;
 	private static Random r = new Random();
 	private const int SPEED = 5;
-	private EnemyLimiter s;
+	public EnemyLimiter s;
+	public Object parent;
 	
 	void Start(){
-		s = (EnemyLimiter) transform.parent.GetComponent(typeof(EnemyLimiter));
+		parent = transform.parent;
+		s = (EnemyLimiter) transform.parent.gameObject.GetComponent(typeof(EnemyLimiter));
 		player = GameObject.FindGameObjectWithTag ("Player");
 	}
 	void Update () {
+		s = (EnemyLimiter) transform.parent.gameObject.GetComponent(typeof(EnemyLimiter));
 		if (!s.playerWithinBounds ())
 			return;
 		//put boundaries check lol
