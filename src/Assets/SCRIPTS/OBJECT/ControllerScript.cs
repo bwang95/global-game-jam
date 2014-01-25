@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ControllerScript : MonoBehaviour {
 
-    int speed = 5;
+    public int speed = 20;
 
 	// Update is called once per frame
 	void Update () {
