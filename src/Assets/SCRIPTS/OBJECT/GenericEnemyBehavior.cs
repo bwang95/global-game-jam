@@ -15,14 +15,10 @@ public class GenericEnemyBehavior : MonoBehaviour {
 	void Update () {
 		if (!s.playerWithinBounds ())
 			return;
-		//put boundaries check lol
-		
-			float px = player.transform.position.x;
-			float py = player.transform.position.y;
-			float x = transform.position.x;
-			float y = transform.position.y;
-			float dx = px - x;
-			float dy = py - y;
+			//put boundaries check
+
+			float dx = player.transform.position.x - transform.position.x;
+			float dy = player.transform.position.y - transform.position.y;;
 			float diag = Mathf.Sqrt (dx * dx + dy * dy);
 			SPEED = 5*Time.deltaTime;
 
