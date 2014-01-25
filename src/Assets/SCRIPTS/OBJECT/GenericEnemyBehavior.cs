@@ -18,7 +18,7 @@ public class GenericEnemyBehavior : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag ("Player");
 	}
 	void Update () {
-		if (s.playerWithinBounds ())
+		if (!s.playerWithinBounds ())
 			return;
 		//put boundaries check lol
 
