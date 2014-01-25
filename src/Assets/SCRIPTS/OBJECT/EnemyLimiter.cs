@@ -20,7 +20,7 @@ public class EnemyLimiter : MonoBehaviour {
 		}
 	}
 
-	boolean isWithinBounds(){
+	bool isWithinBounds(){
 		int x = parentRoom.x - transform.position.x;
 		int y = parentRoom.y - transform.position.y;
 		if(Mathf.Abs(x) <= 5 && Mathf.Abs(y) <= 5){
