@@ -5,6 +5,7 @@ public class CameraControl : MonoBehaviour {
 
 	private Vector3 endLoc;
 	public GameObject player;
+	private const int speedInv = 25;
 
 	void Start () {
 		setPosition(new Vector3(0,0,-5));
@@ -25,7 +26,7 @@ public class CameraControl : MonoBehaviour {
 		if(dist.magnitude <= .001){
 			setPosition (endLoc);
 		}else{
-			Camera.main.transform.Translate(dist.x/4, dist.y/4, dist.z/4);
+			Camera.main.transform.Translate(dist.x/speedInv, dist.y/speedInv, dist.z/speedInv);
 		}
 	}
 

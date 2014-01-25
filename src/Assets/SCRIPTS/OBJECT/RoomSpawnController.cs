@@ -17,4 +17,11 @@ public class RoomSpawnController : MonoBehaviour {
 		EnemyLimiter s = (EnemyLimiter) g.GetComponent(typeof(EnemyLimiter));
 		s.setParentRoom(spawnOrigin);
 	}
+
+	void spawn(int style){
+		switch(style){
+		case 1:
+			break;
+		}
+	}
 }
