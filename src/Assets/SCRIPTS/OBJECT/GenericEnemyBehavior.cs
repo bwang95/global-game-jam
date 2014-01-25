@@ -10,9 +10,12 @@ public class GenericEnemyBehavior : MonoBehaviour {
 	private bool chasing = false;
 	private double duration = 0.0;
 	private static Random r = new Random();
-	private static const int SPEED = 5;
+	private const int SPEED = 5;
+	private EnemyLimiter s;
 	
-	// Update is called once per frame
+	void Start(){
+		s = (EnemyLimiter) transform.parent.GetComponent(typeof(EnemyLimiter));
+	}
 	void Update () {
 		//transform.position.x;
 		//transform.rotation.z;
@@ -22,7 +25,7 @@ public class GenericEnemyBehavior : MonoBehaviour {
 		double x = r.nextDouble ();
 		double thresh = 0.0;
 		*/
-		if (playerWithinBounds ())
+		if (s.playerWithinBounds ())
 			return;
 		//put boundaries check lol
 
