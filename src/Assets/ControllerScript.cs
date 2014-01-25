@@ -4,7 +4,6 @@ using System.Collections;
 public class ControllerScript : MonoBehaviour {
 
     int speed = 5;
-    bool colliding = false;
 
 	// Update is called once per frame
 	void Update () {
@@ -18,9 +17,5 @@ public class ControllerScript : MonoBehaviour {
             y += 1;
         else if (Input.GetKey(KeyCode.S))
             y -= 1;
-
-        if (!colliding)
-            rigidbody.velocity = new Vector2(x * speed, y * speed);
-        else rigidbody.velocity = Vector2.zero;
 	}
 }
