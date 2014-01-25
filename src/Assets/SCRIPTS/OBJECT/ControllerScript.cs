@@ -17,5 +17,7 @@ public class ControllerScript : MonoBehaviour {
             y += 1;
         else if (Input.GetKey(KeyCode.S))
             y -= 1;
+
+        rigidbody.velocity = new Vector2(x * speed, y * speed);
 	}
 }
