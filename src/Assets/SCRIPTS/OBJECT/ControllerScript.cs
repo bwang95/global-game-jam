@@ -19,8 +19,7 @@ public class ControllerScript : MonoBehaviour {
     private SpriteRenderer renderer;
 	bool flash = false;
     public Sprite[] sprites;
-	public GameObject projectile;
-	public Sprite[] enemySprites;
+	public GameObject projectile, flames;
 	private Vector3[] abuseBallLoc = {new Vector3(0,4,0), new Vector3(0, -4, 0), new Vector3(-3,0,0), new Vector3(3,0,0)};
 	public Vector3[] projectileDir;   
 
@@ -37,8 +36,8 @@ public class ControllerScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-		if (lives < 3){
-			Application.LoadLevel(4);
+		if (lives <= 0){
+			Application.LoadLevel(3);
 		}
         if (hitpoints <= 0)
         {
@@ -192,6 +191,7 @@ public class ControllerScript : MonoBehaviour {
                 return;
 			case Character.SHADOW :   
 				collisions = Physics.OverlapSphere(transform.position, 5);
+				GameObject clone2 = (GameObject)Instantiate(flames, transform.position, Quaternion.identity);
 				for(int i = 0; i < collisions.Length; i++){
 					print(collisions[i]);
 					if (collisions[i].gameObject.tag == "Enemy")
