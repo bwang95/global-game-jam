@@ -162,4 +162,8 @@ public class ControllerScript : MonoBehaviour {
         transform.position = new Vector3(0, 0);
     }
 
+    void OnCollisionEnter(Collision c)
+    {
+        
+    }
 }
