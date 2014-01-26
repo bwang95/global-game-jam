@@ -60,7 +60,7 @@ public class GenericEnemyBehavior : MonoBehaviour {
 					if(cooldown <= 0){
 						GameObject clone = (GameObject)Instantiate(projectile, transform.position, Quaternion.identity);
 						clone.GetComponent<EnemyProjectile>().setVelocity(new Vector3(dx / diag * SPEED, dy / diag * SPEED, 0));
-						cooldown = Random.Range(3,4);
+						cooldown = Random.Range(3f,4f);
 					}
 					cooldown -= Time.deltaTime;
 					if(diag < 10){
