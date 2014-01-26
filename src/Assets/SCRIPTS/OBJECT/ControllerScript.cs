@@ -7,7 +7,7 @@ public class ControllerScript : MonoBehaviour {
 
 
 	//unlocked characters
-	bool[] unlocked = new bool[3];
+	public bool[] unlocked = new bool[3];
 	Character currentChar = Character.MIDAS;
 	private int inv;
 
