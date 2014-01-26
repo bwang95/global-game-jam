@@ -40,4 +40,9 @@ public class EnemyLimiter : MonoBehaviour {
 		}
 	}
 
+	public Vector2 randPoint(){
+				float x = parentRoom.x + Random.value * 28 - 13;
+				float y = parentRoom.y + Random.value * 28 - 13;
+				return new Vector2 (x, y);
+		}
 }
