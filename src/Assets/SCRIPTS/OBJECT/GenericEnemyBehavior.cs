@@ -12,6 +12,7 @@ public class GenericEnemyBehavior : MonoBehaviour {
 
 	private int character;
 	private int facing; //0 = up, 1 = down, 2 = right, 3 = left
+	private bool invisible;
 
 	void Start(){
 		player = GameObject.FindGameObjectWithTag ("Player");
@@ -23,7 +24,7 @@ public class GenericEnemyBehavior : MonoBehaviour {
 	}
 	void Update () {
 		character = (int)(player.GetComponent<ControllerScript> ()).getChar ();
-		renderer.sprite = sprites [character * 4 + facing];
+		renderer.sprite = invisible ? null : sprites [character * 4 + facing];
 		if (!s.playerWithinBounds ())
 			return;
 
@@ -48,9 +49,11 @@ public class GenericEnemyBehavior : MonoBehaviour {
 		
 		switch ((player.GetComponent<ControllerScript>()).getChar()) {
 				case Character.MIDAS:
+						invisible = false;
 						transform.Translate (dx / diag * SPEED, dy / diag * SPEED, 0);
 						break;
 				case Character.WIZARD:
+						invisible = false;
 					if(diag < 10){
 						dx *= -1;
 						dy *= -1;
@@ -59,7 +62,10 @@ public class GenericEnemyBehavior : MonoBehaviour {
 					break;
 				case Character.SHADOW:
 					if (diag < 10){
+						invisible = true;
 						break;
+					} else {
+						invisible = false;
 					}
 					if(point.x == 0 && point.y == 0)
 						point = s.randPoint();
