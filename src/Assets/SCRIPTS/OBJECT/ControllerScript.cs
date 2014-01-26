@@ -35,7 +35,7 @@ public class ControllerScript : MonoBehaviour {
         if (hitpoints <= 0)
         {
             hitpoints = 1;
-            
+            reset();
         }
         float x = 0, y = 0;
         if (Time.time > inv + 10)
@@ -156,4 +156,10 @@ public class ControllerScript : MonoBehaviour {
 	void setAbuseBallLoc(int index){
 		gameObject.GetComponent<SphereCollider>().center = abuseBallLoc[index];
 	}
+
+    void reset()
+    {
+        transform.position = new Vector3(0, 0);
+    }
+
 }
