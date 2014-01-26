@@ -21,13 +21,13 @@ public class RoomObjective : MonoBehaviour {
 			}else if(n == b){
 				getController(allRooms[n]).setSpawnItem(2);
 			}else{
-				getController(allRooms[n]).setSpawnItem(Mathf.FloorToInt(Random.Range(3,Enum.GetNames(typeof(items)).length)));
+				getController(allRooms[n]).setSpawnItem(Mathf.FloorToInt(Random.Range(3,items.GetNames(typeof(items)).Length)));
 			}
 		}
 	}
 
 	RoomItemController getController(GameObject room){
-		return room.GetComponent(typeof(RoomItemController));
+		return room.GetComponent<RoomItemController>();
 	}
 
 }
