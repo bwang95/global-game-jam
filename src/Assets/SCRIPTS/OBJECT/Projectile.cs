@@ -4,14 +4,17 @@ using System.Collections;
 public class Projectile : MonoBehaviour {
 
 	private Vector3 velocity;
+	ControllerScript player;
 
 	// Use this for initialization
 	void Start () {
-		
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<ControllerScript>();
+		print(player.facing);
+		setVelocity(player.projectileDir[player.facing]);
 	}
 
 	public void setVelocity(Vector3 vect){
-		velocity = vect;
+		velocity = vect * Time.deltaTime;
 	}
 	
 	// Update is called once per frame
@@ -21,12 +24,12 @@ public class Projectile : MonoBehaviour {
 			if (collisions[i].gameObject.tag == "Enemy")
 			{
 				Destroy(collisions[i].gameObject);
-				Destroy (this);
-			} else if (collisions[i].gameObject.tag == "Room"){
-				Destroy (this);
-				//stun wizard?
+				Destroy (gameObject);
+			}else if (collisions[i].tag == "Untagged"){
+				Destroy (gameObject);
 			}
+			print(collisions[i].gameObject.tag);
 		}
-		transform.Translate (velocity * Time.deltaTime);
+		transform.Translate (velocity);
 	}
 }

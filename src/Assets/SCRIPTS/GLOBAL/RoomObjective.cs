@@ -8,7 +8,7 @@ public class RoomObjective : MonoBehaviour {
 
 	GameObject[] allRooms;
 	void Update () {
-		print (hasRun);
+		//print (hasRun);
 		if(!hasRun){
 			allRooms = GameObject.FindGameObjectsWithTag("Room");
 			print(allRooms.Length);
