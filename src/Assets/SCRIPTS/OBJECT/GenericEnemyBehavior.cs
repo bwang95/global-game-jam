@@ -41,13 +41,24 @@ public class GenericEnemyBehavior : MonoBehaviour {
             }
 
 			float diag = Mathf.Sqrt (dx * dx + dy * dy);
-			SPEED = 5*Time.deltaTime;
+			SPEED = 5 * Time.deltaTime;
 
-			transform.Translate(dx / diag * SPEED, dy / diag * SPEED,0);
-		/*
-			break;
-		case WIZARD:
-			//
-		*/
+			switch ((player.GetComponent<ControllerScript>()).getChar()) {
+				case Character.MIDAS:
+						dx = player.transform.position.x - transform.position.x;
+						dy = player.transform.position.y - transform.position.y;
+						diag = Mathf.Sqrt (dx * dx + dy * dy);
+						SPEED = 5 * Time.deltaTime;
+
+						transform.Translate (dx / diag * SPEED, dy / diag * SPEED, 0);
+		
+						break;
+				case Character.WIZARD:
+
+						break;
+				case Character.SHADOW:
+
+						break;
+		}
 	}
 }
