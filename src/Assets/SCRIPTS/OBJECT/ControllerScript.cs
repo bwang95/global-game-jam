@@ -7,25 +7,25 @@ public class ControllerScript : MonoBehaviour {
 
 
 	//unlocked characters
-	bool[] unlocked = new bool[3];
+	public bool[] unlocked = new bool[3];
 	Character currentChar = Character.MIDAS;
 	private int inv;
 
 	public int lives;
     public int hitpoints = 1;
-    private float invul = -1;
-    private float invulDuration = -1;
-    public int speed = 20;
+    public float invul = 0;
+    public int speed = 15;
     private int facing = 1;
     private SpriteRenderer renderer;
+	bool flash = false;
     public Sprite[] sprites;
+	public Sprite[] enemySprites;
 	private Vector3[] abuseBallLoc = {new Vector3(0,4,0), new Vector3(0, -4, 0), new Vector3(-3,0,0), new Vector3(3,0,0)};
 
     void Start()
     {
         renderer = gameObject.GetComponent<SpriteRenderer>();
         unlocked[0] = true;
-
 		//
 		gameObject.GetComponent<ParticleSystem> ().renderer.sortingLayerName = "Midas";
 		//
@@ -35,6 +35,9 @@ public class ControllerScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+		if (lives < 3){
+			//endgameconditions
+		}
         if (hitpoints <= 0)
         {
 			lives--;
@@ -42,8 +45,6 @@ public class ControllerScript : MonoBehaviour {
             reset();
         }
         float x = 0, y = 0;
-        if (Time.time > invul + invulDuration)
-            invul = -1;
         if (Input.GetKey(KeyCode.A))
         {
             facing = 2;
@@ -71,24 +72,35 @@ public class ControllerScript : MonoBehaviour {
             attack();
         }
 
-        if (Input.GetKey(KeyCode.Alpha1) && unlocked[0])
-            currentChar = Character.MIDAS;
-        else if (Input.GetKey(KeyCode.Alpha2) && unlocked[1])
-            currentChar = Character.WIZARD;
-        else if (Input.GetKey(KeyCode.Alpha3) && unlocked[2])
-            currentChar = Character.SHADOW;
+        if (Input.GetKey (KeyCode.Alpha1) && unlocked [0]) {
+			currentChar = Character.MIDAS;
+
+		} else if (Input.GetKey (KeyCode.Alpha2) && unlocked [1]) {
+			currentChar = Character.WIZARD;
+		} else if (Input.GetKey (KeyCode.Alpha3) && unlocked [2]) {
+			currentChar = Character.SHADOW;
+		}
         
-        int spriteSet = getCharIndex(currentChar) * 5;
-        renderer.sprite = sprites[spriteSet + facing];
+		if(invul > 0 && !flash){
+			renderer.sprite = null;
+			flash = true;
+		}else{
+        	int spriteSet = getCharIndex(currentChar) * 5;
+        	renderer.sprite = sprites[spriteSet + facing];
+			flash = false;
+		}
 
 		if (Input.GetKeyDown(KeyCode.RightControl) || Input.GetKeyDown(KeyCode.LeftControl) ||
-            Input.GetKeyDown(KeyCode.RightCommand) || Input.GetKeyDown(KeyCode.LeftCommand)){
+            Input.GetKeyDown(KeyCode.RightCommand) || Input.GetKeyDown(KeyCode.LeftCommand) || Input.GetKeyDown (KeyCode.Q)){
 			useInv();
 		}
 
 		setAbuseBallLoc(facing);
 
         rigidbody.velocity = new Vector2(x * speed, y * speed);
+		if(invul > 0){
+			invul -= Time.deltaTime;
+		}
 	}
 
 	public void setInv(int item){
@@ -97,8 +109,9 @@ public class ControllerScript : MonoBehaviour {
             return;
         }else if(item == 1 || item == 2){
 			unlocked[item] = true;
-		}
+		}else{
 			inv = item;
+		}
 	}
 
 	public int getInv(){
@@ -112,16 +125,19 @@ public class ControllerScript : MonoBehaviour {
                 break;
             case 3:
                 hitpoints++;
+				setInv(0);
                 break;
             case 6:
-                invul = Time.time;
                 invul = 10;
+				setInv(0);
                 break;
             case 7:
                 //Set speed and such
+				setInv(0);
                 break;
             case 8:
                 setInv((int)(Random.value * 9));
+				setInv(0);
                 break;
             //case 9:
                 
@@ -129,7 +145,7 @@ public class ControllerScript : MonoBehaviour {
 
 		//WRITE EFFECTS HERE.
 		}
-        setInv(0);
+        
 
 	}
 
@@ -150,10 +166,11 @@ public class ControllerScript : MonoBehaviour {
 
     void attack()
     {
+		Collider[] collisions;
         switch (currentChar)
         {
             case Character.MIDAS :
-                Collider[] collisions = Physics.OverlapSphere(gameObject.GetComponent<SphereCollider>().center + transform.position, 
+                collisions = Physics.OverlapSphere(gameObject.GetComponent<SphereCollider>().center + transform.position, 
                     gameObject.GetComponent<SphereCollider>().radius);
                 for(int i = 0; i < collisions.Length; i++){
                     print(collisions[i]);
@@ -164,12 +181,21 @@ public class ControllerScript : MonoBehaviour {
                 }
                 return;
             case Character.WIZARD :
-                return;
-            case Character.SHADOW :
-                return;
-        }
-    }
 
+                return;
+			case Character.SHADOW :   
+				collisions = Physics.OverlapSphere(transform.position, 5);
+				for(int i = 0; i < collisions.Length; i++){
+					print(collisions[i]);
+					if (collisions[i].gameObject.tag == "Enemy")
+					{
+						Destroy(collisions[i].gameObject);
+					}
+				}
+				return;
+		}
+	}
+	
 	void setAbuseBallLoc(int index){
 		gameObject.GetComponent<SphereCollider>().center = abuseBallLoc[index];
 	}
@@ -183,9 +209,13 @@ public class ControllerScript : MonoBehaviour {
     {
         if (c.gameObject.tag.Equals("Enemy"))
         {
-            hitpoints--;
-            invul = Time.time;
-            invulDuration = 1;
+            if(invul > 0){
+				Destroy(c.gameObject);
+			}else{
+				hitpoints -=1;
+				invul += 3;
+				Destroy(c.gameObject);
+			}
         }
     }
 }
