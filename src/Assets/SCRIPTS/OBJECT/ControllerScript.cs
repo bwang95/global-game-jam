@@ -23,6 +23,10 @@ public class ControllerScript : MonoBehaviour {
     {
         renderer = gameObject.GetComponent<SpriteRenderer>();
         unlocked[0] = true;
+
+		//
+		gameObject.GetComponent<ParticleSystem> ().renderer.sortingLayerName = Midas;
+		//
     }
 
     // Update is called once per frame
@@ -113,6 +117,7 @@ public class ControllerScript : MonoBehaviour {
 		//WRITE EFFECTS HERE.
 		}
         setInv(0);
+
 	}
 
 	public Character getChar(){
