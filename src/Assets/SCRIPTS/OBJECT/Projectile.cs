@@ -10,15 +10,14 @@ public class Projectile : MonoBehaviour {
 		
 	}
 
-	void setVelocity(Vector3 vect){
+	public void setVelocity(Vector3 vect){
 		velocity = vect * Time.deltaTime;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		collisions = Physics.OverlapSphere(transform.position, 5);
+		Collider[] collisions = Physics.OverlapSphere(transform.position, 1);
 		for(int i = 0; i < collisions.Length; i++){
-			print(collisions[i]);
 			if (collisions[i].gameObject.tag == "Enemy")
 			{
 				Destroy(collisions[i].gameObject);
