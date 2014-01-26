@@ -1,25 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GUI\GUILOCMANAGE.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\SCRIPTS\GLOBAL\TestGridSpawn.cs">
     <Files>
-      <File FileName="Assets\SCRIPTS\GLOBAL\TestGridSpawn.cs" Line="1" Column="1" />
-      <File FileName="Assets\SCRIPTS\GLOBAL\CameraControl.cs" Line="1" Column="1" />
-      <File FileName="Assets\SCRIPTS\OBJECT\ControllerScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\GUI\GUILOCMANAGE.cs" Line="13" Column="1" />
-=======
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\SCRIPTS\OBJECT\RoomSpawnController.cs">
-    <Files>
-      <File FileName="Assets\SCRIPTS\OBJECT\GenericEnemyBehavior.cs" Line="1" Column="1" />
-      <File FileName="Assets\SCRIPTS\OBJECT\EnemyLimiter.cs" Line="1" Column="1" />
-      <File FileName="Assets\SCRIPTS\OBJECT\RoomSpawnController.cs" Line="18" Column="34" />
-      <File FileName="Assets\SCRIPTS\OBJECT\ControllerScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\SCRIPTS\GLOBAL\TestGridSpawn.cs" Line="1" Column="1" />
->>>>>>> 8b06cbf490411af8589d2c1c05d496b7e856fce0
+      <File FileName="Assets\SCRIPTS\OBJECT\RoomSpawnController.cs" Line="1" Column="1" />
+      <File FileName="Assets\SCRIPTS\GLOBAL\TestGridSpawn.cs" Line="35" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\Brian\Documents\Programming\Unity\global-game-jam\src\Assets\SCRIPTS\GLOBAL\TestGridSpawn.cs" line="35" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
