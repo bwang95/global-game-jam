@@ -22,12 +22,12 @@ public class ControllerScript : MonoBehaviour {
 	public GameObject projectile;
 	public Sprite[] enemySprites;
 	private Vector3[] abuseBallLoc = {new Vector3(0,4,0), new Vector3(0, -4, 0), new Vector3(-3,0,0), new Vector3(3,0,0)};
-	public Vector3[] projectileDir = {new Vector3(0,10,0), new Vector3(0, -10, 0), new Vector3(-10,0,0), new Vector3(10,0,0)};
+	public Vector3[] projectileDir;   
 
-    void Start()
+	void Start()
     {
         renderer = gameObject.GetComponent<SpriteRenderer>();
-        unlocked[0] = true;
+		unlocked[0] = true;
 		//
 		gameObject.GetComponent<ParticleSystem> ().renderer.sortingLayerName = "Midas";
 		//
@@ -172,6 +172,7 @@ public class ControllerScript : MonoBehaviour {
         switch (currentChar)
         {
             case Character.MIDAS :
+			print ("hhh");
                 collisions = Physics.OverlapSphere(gameObject.GetComponent<SphereCollider>().center + transform.position, 
                     gameObject.GetComponent<SphereCollider>().radius);
                 for(int i = 0; i < collisions.Length; i++){
@@ -183,8 +184,11 @@ public class ControllerScript : MonoBehaviour {
                 }
                 return;
             case Character.WIZARD :
-			projectile.GetComponent<Projectile>().setVelocity(projectileDir[facing]);
-			Instantiate(projectile, transform.position, Quaternion.identity);
+				print ("zhur");
+				//projectile.GetComponent<Projectile>().setVelocity(projectileDir[facing]);
+				GameObject clone = (GameObject)Instantiate(projectile, transform.position, Quaternion.identity);
+				clone.GetComponent<Projectile>().setVelocity(projectileDir[facing]);
+				print("shot web");
                 return;
 			case Character.SHADOW :   
 				collisions = Physics.OverlapSphere(transform.position, 5);
