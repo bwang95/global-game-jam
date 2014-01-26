@@ -9,14 +9,12 @@ public class GenericEnemyBehavior : MonoBehaviour {
 	private Vector2 point;
     public Sprite up, down, left, right;
 	private SpriteRenderer renderer;
-	//private Vector3 home;
 
 	void Start(){
 		player = GameObject.FindGameObjectWithTag ("Player");
 		s = gameObject.GetComponent<EnemyLimiter>();
 		SPEED = 5*Time.deltaTime;
         renderer = gameObject.GetComponent<SpriteRenderer>();
-		//home = gameObject.GetComponent<EnemyLimiter>().parentRoom;
 	}
 	void Update () {
 		if (!s.playerWithinBounds ())
@@ -67,6 +65,6 @@ public class GenericEnemyBehavior : MonoBehaviour {
 						}
 						transform.Translate (dx / diag * SPEED, dy / diag * SPEED, 0);
 						break;
-		}
+			}
 	}
 }
