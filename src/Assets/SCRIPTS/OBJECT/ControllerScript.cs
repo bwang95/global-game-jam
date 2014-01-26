@@ -13,11 +13,12 @@ public class ControllerScript : MonoBehaviour {
 
     public int hitpoints = 1;
     private float invul = -1;
+    private float invulDuration = -1;
     public int speed = 20;
     private int facing = 1;
     private SpriteRenderer renderer;
     public Sprite[] sprites;
-	private Vector3[] abuseBallLoc = {new Vector3(0,3,0), new Vector3(0, -3, 0), new Vector3(-2,0,0), new Vector3(2,0,0)};
+	private Vector3[] abuseBallLoc = {new Vector3(0,4,0), new Vector3(0, -4, 0), new Vector3(-3,0,0), new Vector3(3,0,0)};
 
     void Start()
     {
@@ -38,8 +39,8 @@ public class ControllerScript : MonoBehaviour {
             reset();
         }
         float x = 0, y = 0;
-        if (Time.time > inv + 10)
-            inv = -1;
+        if (Time.time > invul + invulDuration)
+            invul = -1;
         if (Input.GetKey(KeyCode.A))
         {
             facing = 2;
@@ -62,7 +63,7 @@ public class ControllerScript : MonoBehaviour {
             facing = 1;
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             attack();
         }
@@ -108,6 +109,7 @@ public class ControllerScript : MonoBehaviour {
                 break;
             case 6:
                 invul = Time.time;
+                invul = 10;
                 break;
             case 7:
                 //Set speed and such
@@ -145,6 +147,15 @@ public class ControllerScript : MonoBehaviour {
         switch (currentChar)
         {
             case Character.MIDAS :
+                Collider[] collisions = Physics.OverlapSphere(gameObject.GetComponent<SphereCollider>().center + transform.position, 
+                    gameObject.GetComponent<SphereCollider>().radius);
+                for(int i = 0; i < collisions.Length; i++){
+                    print(collisions[i]);
+                    if (collisions[i].gameObject.tag != "Player")
+                    {
+                        Destroy(collisions[i].gameObject);
+                    }
+                }
                 return;
             case Character.WIZARD :
                 return;
@@ -164,6 +175,11 @@ public class ControllerScript : MonoBehaviour {
 
     void OnCollisionEnter(Collision c)
     {
-        
+        if (c.gameObject.tag.Equals("Enemy"))
+        {
+            hitpoints--;
+            invul = Time.time;
+            invulDuration = 1;
+        }
     }
 }
