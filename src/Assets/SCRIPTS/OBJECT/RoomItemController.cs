@@ -13,7 +13,6 @@ public class RoomItemController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(enemiesWithin.Count(s => s != null) == 0 && !hasSpawnedItem){
-            setSpawnItem((int)(Random.value * numItems));
 			spawnItem();
             hasSpawnedItem = true;
 		}
@@ -28,7 +27,8 @@ public class RoomItemController : MonoBehaviour {
 	}
 
 	private void spawnItem(){
-		GameObject clone = (GameObject) Instantiate (item, transform.position, Quaternion.identity);
-        clone.GetComponent<ItemController>().setType(toSpawn);
+		item.GetComponent<ItemController>().setType(toSpawn);
+		Instantiate (item, transform.position, Quaternion.identity);
+      
 	}
 }
