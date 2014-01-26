@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour {
 	}
 
 	public void setVelocity(Vector3 vect){
-		velocity = vect * Time.deltaTime;
+		velocity = vect;
 	}
 	
 	// Update is called once per frame
@@ -22,8 +22,11 @@ public class Projectile : MonoBehaviour {
 			{
 				Destroy(collisions[i].gameObject);
 				Destroy (this);
+			} else if (collisions[i].gameObject.tag == "Room"){
+				Destroy (this);
+				//stun wizard?
 			}
 		}
-		transform.Translate (velocity);
+		transform.Translate (velocity * Time.deltaTime);
 	}
 }

@@ -33,6 +33,4 @@ public class RoomSpawnController : MonoBehaviour {
 		RoomItemController s = gameObject.GetComponent<RoomItemController>();
 		s.setSpawnStatus(inhabitants);
 	}
-
-
 }
