@@ -23,11 +23,20 @@ public class ControllerScript : MonoBehaviour {
     {
         renderer = gameObject.GetComponent<SpriteRenderer>();
         unlocked[0] = true;
+
+		//
+		gameObject.GetComponent<ParticleSystem> ().renderer.sortingLayerName = "Midas";
+		//
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (hitpoints <= 0)
+        {
+            hitpoints = 1;
+            reset();
+        }
         float x = 0, y = 0;
         if (Time.time > inv + 10)
             inv = -1;
@@ -113,6 +122,7 @@ public class ControllerScript : MonoBehaviour {
 		//WRITE EFFECTS HERE.
 		}
         setInv(0);
+
 	}
 
 	public Character getChar(){
@@ -146,4 +156,10 @@ public class ControllerScript : MonoBehaviour {
 	void setAbuseBallLoc(int index){
 		gameObject.GetComponent<SphereCollider>().center = abuseBallLoc[index];
 	}
+
+    void reset()
+    {
+        transform.position = new Vector3(0, 0);
+    }
+
 }

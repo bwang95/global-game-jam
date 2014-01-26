@@ -5,9 +5,12 @@ public class ItemController : MonoBehaviour {
 
 	public int type;
 	private GameObject player;
+	private SpriteRenderer renderer;
+	public Sprite[] sprites;
 
 	void Start () {
 		player = GameObject.FindGameObjectWithTag("Player");
+		renderer = gameObject.GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -20,5 +23,6 @@ public class ItemController : MonoBehaviour {
 
 	public void setType(int type){
 		this.type = type;
+		renderer.sprite = sprites [type];
 	}
 }
