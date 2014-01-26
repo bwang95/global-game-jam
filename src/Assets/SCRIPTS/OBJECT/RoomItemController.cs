@@ -15,8 +15,11 @@ public class RoomItemController : MonoBehaviour {
 	
 	}
 
-	public void setSpawnStatus(int toSpawn, GameObject[] enemies){
+	public void setSpawnItem(int toSpawn){
 		this.toSpawn = toSpawn;
+	}
+
+	public void setSpawnStatus( GameObject[] enemies){
 		enemiesWithin = enemies;
 	}
 }
