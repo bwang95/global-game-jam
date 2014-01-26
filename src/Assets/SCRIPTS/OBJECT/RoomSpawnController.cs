@@ -25,7 +25,7 @@ public class RoomSpawnController : MonoBehaviour {
 		case 1:
 			break;
 		}
-		for(int i = 0; i < Mathf.CeilToInt(Random.Range(0,5)); i++){
+		for(int i = 0; i < Mathf.CeilToInt(Random.Range(0,5) + 1); i++){
 			Vector3 pos = Random.insideUnitCircle * 5;
 			SpawnObject(toSpawn[0], pos);
 		}
