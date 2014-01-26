@@ -4,7 +4,7 @@ using System.Linq;
 
 public class RoomItemController : MonoBehaviour {
 
-	int toSpawn;
+	public int toSpawn;
 	GameObject[] enemiesWithin;
 	public GameObject item;
     bool hasSpawnedItem = false;

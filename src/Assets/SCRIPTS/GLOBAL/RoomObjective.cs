@@ -3,25 +3,30 @@ using System.Collections;
 
 public class RoomObjective : MonoBehaviour {
 
-	enum items {nothing, sgcard, wizcard, aegis, iblade, ihilt, hglass, dice};
+	enum items {nothing, wizcard, sgcard, aegis, iblade, ihilt, hglass, dice};
+	bool hasRun = false;
 
 	GameObject[] allRooms;
-	void Start () {
-		allRooms = GameObject.FindGameObjectsWithTag("Room");
-		int no = allRooms.Length;
-		int a = (int) Mathf.Floor(Random.Range(0, no));
-		int b = a;
-		while (a == b){
-			b = (int) Mathf.Floor(Random.Range(0, no));
-		}
+	void Update () {
+		if(!hasRun){
+			allRooms = GameObject.FindGameObjectsWithTag("Room");
+			if(allRooms.Length > 0){
+				int no = allRooms.Length;
+				int a = (int) Mathf.Floor(Random.Range(0, no));
+				int b = a;
+				while (a == b){
+					b = (int) Mathf.Floor(Random.Range(0, no));
+				}
 
-		for (int n = 0; n < allRooms.Length; n++){
-			if(n == a){
-				getController(allRooms[n]).setSpawnItem(1);
-			}else if(n == b){
-				getController(allRooms[n]).setSpawnItem(2);
-			}else{
-				getController(allRooms[n]).setSpawnItem(Mathf.FloorToInt(Random.Range(3,items.GetNames(typeof(items)).Length)));
+				for (int n = 0; n < allRooms.Length; n++){
+					if(n == a){
+						getController(allRooms[n]).setSpawnItem(1);
+					}else if(n == b){
+						getController(allRooms[n]).setSpawnItem(2);
+					}else{
+						getController(allRooms[n]).setSpawnItem(Mathf.FloorToInt(Random.Range(3,items.GetNames(typeof(items)).Length)));
+					}
+				}
 			}
 		}
 	}
