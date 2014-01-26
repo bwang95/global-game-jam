@@ -4,26 +4,40 @@ using System.Collections;
 public class TestGridSpawn : MonoBehaviour {
 
 	public GameObject OneDoor, TwoDoors, ThreeDoors, FourDoors;
-    public int roughRoomCount = 30, roomSize = 30;
+	public GameObject StartRoom;
+    public int minRooms = 30, roomSize = 30;
 
     private Vector3 zVec = new Vector3(0, 0, 1);
     private GameObject[] rooms;
     private int[] root = { 0, 0 };
+	private bool goodRooms = false;
     
 
 	void Start () {
         rooms = new GameObject[] {OneDoor, TwoDoors, ThreeDoors, FourDoors};
+		int rn;
+		int[] coords;
 
-        int rn = random(0, 4);
-        Instantiate(rooms[1], 
-            new Vector3(root[0], root[1], 0),
-            Quaternion.AngleAxis(rn * 90, zVec));
+		while(!goodRooms){
+        	rn = random(0, 4);
+        	Instantiate(StartRoom, new Vector3(root[0], root[1], 0), Quaternion.AngleAxis(rn * 90, zVec));
+        	coords = getXY(rn + 1);
+        	visited.Add("0 0");
+				
+       		print("Exit init OK at 0, 0");
 
-        int[] coords = getXY(rn + 1);
-        visited.Add("0 0");
-
-        print("Exit init OK at 0, 0");
-        spawnRooms(coords[0], coords[1], rn + 1);
+        	spawnRooms(coords[0], coords[1], rn + 1);
+			if(roomCounter <= minRooms){
+				print ("Dead game. Resetting.");
+				foreach (GameObject g in GameObject.FindGameObjectsWithTag("Room")){
+					Destroy(g);
+					visited.Clear();
+					roomCounter = 0;
+				}
+			}else{
+				goodRooms = true;
+			}
+		}
         
 
         print("Actual number of rooms: " + roomCounter);
@@ -41,7 +55,7 @@ public class TestGridSpawn : MonoBehaviour {
         }
         visited.Add(x + " " + y);
         Vector3 spawn = new Vector3(x * roomSize, y * roomSize, 0);
-        if(++roomCounter >= roughRoomCount){
+        if(++roomCounter >= minRooms){
             Instantiate(rooms[0], spawn, Quaternion.AngleAxis(((doorNum + 1) % 4) * 90, zVec));
             print("Instantiating dead room #" + roomCounter + " at coord " + x + " " + y + " Out: " + doorNum);
             return;
@@ -60,11 +74,9 @@ public class TestGridSpawn : MonoBehaviour {
                 Instantiate(rooms[1], spawn, Quaternion.AngleAxis(r * 90, zVec));
 
                 c = getXY(r + 1);
-                printWhere(r + 1);
                 spawnRooms(x + c[0], y + c[1], r + 1);
 
                 c = getXY(r + 2);
-                printWhere(r + 2);
                 spawnRooms(x + c[0], y + c[1], r + 2);
                 return;
             case 3 : case 4: case 7 :
@@ -72,7 +84,6 @@ public class TestGridSpawn : MonoBehaviour {
                 Instantiate(rooms[2], spawn, Quaternion.AngleAxis(r * 90, zVec));
 
                 c = getXY(r + 1);
-                printWhere(r + 1);
                 spawnRooms(x + c[0], y + c[1], r + 1);
 
                 c = getXY(r + 2);
@@ -112,26 +123,6 @@ public class TestGridSpawn : MonoBehaviour {
                 return new int[] { 0, 1};
         }
         return new int[] { 0, 0 };
-    }
-
-    void printWhere(int direction)
-    {
-        direction = direction % 4;
-        switch (direction)
-        {
-            case 0:
-                print("MakingLeft");
-                break;
-            case 1:
-                print("MakingDown");
-                break;
-            case 2:
-                print("MakingRight");
-                break;
-            case 3:
-                print("MakingUp");
-                break;
-        }
     }
 
     
