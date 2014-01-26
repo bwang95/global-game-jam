@@ -15,6 +15,7 @@ public class ControllerScript : MonoBehaviour {
     private int facing = 1;
     private SpriteRenderer renderer;
     public Sprite[] sprites;
+	private Vector3[] abuseBallLoc = {new Vector3(0,3,0), new Vector3(0, -3, 0), new Vector3(-2,0,0), new Vector3(2,0,0)};
 
     void Start()
     {
@@ -53,6 +54,7 @@ public class ControllerScript : MonoBehaviour {
         {
             attack();
         }
+
         if (Input.GetKey(KeyCode.Alpha1) && unlocked[0])
             currentChar = Character.MIDAS;
         else if (Input.GetKey(KeyCode.Alpha2) && unlocked[1])
@@ -66,6 +68,8 @@ public class ControllerScript : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.RightControl)){
 			useInv();
 		}
+
+		setAbuseBallLoc(facing);
 
         rigidbody.velocity = new Vector2(x * speed, y * speed);
 	}
@@ -109,4 +113,8 @@ public class ControllerScript : MonoBehaviour {
                 return;
         }
     }
+
+	void setAbuseBallLoc(int index){
+		gameObject.GetComponent<SphereCollider>().center = abuseBallLoc[index];
+	}
 }
