@@ -12,45 +12,56 @@ public class ControllerScript : MonoBehaviour {
 	private int inv;
 
     public int speed = 20;
+    private int facing = 1;
     private SpriteRenderer renderer;
-    public Sprite up, down, left, right;
+    public Sprite[] sprites;
 
     void Start()
     {
         renderer = gameObject.GetComponent<SpriteRenderer>();
+        for (int k = 0; k < unlocked.Length; k++)
+            unlocked[k] = true;
     }
 
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update()
+    {
         float x = 0, y = 0;
         if (Input.GetKey(KeyCode.A))
         {
+            facing = 2;
             x -= 1;
-            renderer.sprite = left;
         }
         else if (Input.GetKey(KeyCode.D))
         {
             x += 1;
-            renderer.sprite = right;
+            facing = 3;
         }
 
         if (Input.GetKey(KeyCode.W))
         {
             y += 1;
-            renderer.sprite = up;
+            facing = 0;
         }
         else if (Input.GetKey(KeyCode.S))
         {
             y -= 1;
-            renderer.sprite = down;
+            facing = 1;
         }
 
-		if (Input.GetKeyDown (KeyCode.Alpha1))
-			currentChar = Character.MIDAS;
-		else if (Input.GetKeyDown (KeyCode.Alpha2))
-			currentChar = Character.WIZARD;
-		else if (Input.GetKeyDown (KeyCode.Alpha3))
-			currentChar = Character.SHADOW;
+        if (Input.GetKey(KeyCode.Space))
+        {
+            attack();
+        }
+        if (Input.GetKey(KeyCode.Alpha1) && unlocked[0])
+            currentChar = Character.MIDAS;
+        else if (Input.GetKey(KeyCode.Alpha2) && unlocked[1])
+            currentChar = Character.WIZARD;
+        else if (Input.GetKey(KeyCode.Alpha3) && unlocked[2])
+            currentChar = Character.SHADOW;
+        
+        int spriteSet = getCharIndex(currentChar) * 4;
+        renderer.sprite = sprites[spriteSet + facing];
 
 		if (Input.GetKeyDown(KeyCode.RightControl)){
 			useInv();
@@ -74,4 +85,28 @@ public class ControllerScript : MonoBehaviour {
 	public Character getChar(){
 		return currentChar;
 	}
+
+    int getCharIndex(Character c)
+    {
+        switch (c)
+        {
+            case Character.MIDAS: return 0;
+            case Character.WIZARD: return 1;
+            case Character.SHADOW: return 2;
+        }
+        return -1;
+    }
+
+    void attack()
+    {
+        switch (currentChar)
+        {
+            case Character.MIDAS :
+                return;
+            case Character.WIZARD :
+                return;
+            case Character.SHADOW :
+                return;
+        }
+    }
 }

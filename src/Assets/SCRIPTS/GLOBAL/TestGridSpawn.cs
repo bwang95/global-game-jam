@@ -12,7 +12,6 @@ public class TestGridSpawn : MonoBehaviour {
     private int[] root = { 0, 0 };
 	private bool goodRooms = false;
     
-
 	void Start () {
         rooms = new GameObject[] {OneDoor, TwoDoors, ThreeDoors, FourDoors};
 		int rn;
