@@ -5,6 +5,6 @@ public class LoadingScreen : MonoBehaviour
 {
 	void Start()
 	{
-		Application.LoadLevel(0);
+		Application.LoadLevel(2);
 	}
 }

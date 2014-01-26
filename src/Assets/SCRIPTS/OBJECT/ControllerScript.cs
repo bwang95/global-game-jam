@@ -38,7 +38,7 @@ public class ControllerScript : MonoBehaviour {
     void Update()
     {
 		if (lives < 3){
-			//endgameconditions
+			Application.LoadLevel(4);
 		}
         if (hitpoints <= 0)
         {
