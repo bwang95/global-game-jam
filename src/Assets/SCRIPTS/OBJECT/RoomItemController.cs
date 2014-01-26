@@ -7,11 +7,13 @@ public class RoomItemController : MonoBehaviour {
 	int toSpawn;
 	GameObject[] enemiesWithin;
 	public GameObject item;
+    bool hasSpawnedItem = false;
 
 	// Update is called once per frame
 	void Update () {
-		if(enemiesWithin.Count(s => s != null) == 0){
+		if(enemiesWithin.Count(s => s != null) == 0 && !hasSpawnedItem){
 			spawnItem();
+            hasSpawnedItem = true;
 		}
 	}
 
