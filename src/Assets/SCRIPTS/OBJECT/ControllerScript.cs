@@ -15,12 +15,14 @@ public class ControllerScript : MonoBehaviour {
     public int hitpoints = 1;
     public float invul = 0;
     public int speed = 15;
-    private int facing = 1;
+    public int facing = 1;
     private SpriteRenderer renderer;
 	bool flash = false;
     public Sprite[] sprites;
+	public GameObject projectile;
 	public Sprite[] enemySprites;
 	private Vector3[] abuseBallLoc = {new Vector3(0,4,0), new Vector3(0, -4, 0), new Vector3(-3,0,0), new Vector3(3,0,0)};
+	public Vector3[] projectileDir = {new Vector3(0,10,0), new Vector3(0, -10, 0), new Vector3(-10,0,0), new Vector3(10,0,0)};
 
     void Start()
     {
@@ -181,7 +183,8 @@ public class ControllerScript : MonoBehaviour {
                 }
                 return;
             case Character.WIZARD :
-
+			projectile.GetComponent<Projectile>().setVelocity(projectileDir[facing]);
+			Instantiate(projectile, transform.position, Quaternion.identity);
                 return;
 			case Character.SHADOW :   
 				collisions = Physics.OverlapSphere(transform.position, 5);
