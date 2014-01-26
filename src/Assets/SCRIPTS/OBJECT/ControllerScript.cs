@@ -25,7 +25,7 @@ public class ControllerScript : MonoBehaviour {
         unlocked[0] = true;
 
 		//
-		gameObject.GetComponent<ParticleSystem> ().renderer.sortingLayerName = Midas;
+		gameObject.GetComponent<ParticleSystem> ().renderer.sortingLayerName = "Midas";
 		//
     }
 
