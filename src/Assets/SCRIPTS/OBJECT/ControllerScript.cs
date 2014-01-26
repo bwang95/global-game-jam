@@ -11,6 +11,7 @@ public class ControllerScript : MonoBehaviour {
 	Character currentChar = Character.MIDAS;
 	private int inv;
 
+	public int lives;
     public int hitpoints = 1;
     private float invul = -1;
     private float invulDuration = -1;
@@ -28,6 +29,7 @@ public class ControllerScript : MonoBehaviour {
 		//
 		gameObject.GetComponent<ParticleSystem> ().renderer.sortingLayerName = "Midas";
 		//
+		lives = 3;
     }
 
     // Update is called once per frame
@@ -35,6 +37,7 @@ public class ControllerScript : MonoBehaviour {
     {
         if (hitpoints <= 0)
         {
+			lives--;
             hitpoints = 1;
             reset();
         }
@@ -96,6 +99,10 @@ public class ControllerScript : MonoBehaviour {
 			unlocked[item] = true;
 		}
 			inv = item;
+	}
+
+	public int getInv(){
+		return inv;
 	}
 
 	private void useInv(){
