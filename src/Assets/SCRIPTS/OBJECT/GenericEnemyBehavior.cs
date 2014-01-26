@@ -3,33 +3,25 @@ using System.Collections;
 
 public class GenericEnemyBehavior : MonoBehaviour {
 
-	private GameObject player;
-
-	//						  	   0    90   180
-	private double[] chances = {0.50, 0.35, 0.15};
-	private bool chasing = false;
-	private double duration = 0.0;
-	private static Random r = new Random();
-	private const int SPEED = 5;
-	private EnemyLimiter s;
+	public GameObject player;
+	private float SPEED;
+	public EnemyLimiter s;
 	
 	void Start(){
-		s = (EnemyLimiter) transform.parent.GetComponent(typeof(EnemyLimiter));
 		player = GameObject.FindGameObjectWithTag ("Player");
+		s = (EnemyLimiter) gameObject.GetComponent(typeof(EnemyLimiter));
+		SPEED = 5*Time.deltaTime;
 	}
 	void Update () {
 		if (!s.playerWithinBounds ())
 			return;
-		//put boundaries check lol
+			//put boundaries check
 
-			float px = player.transform.position.x;
-			float py = player.transform.position.y;
-			float x = transform.position.x;
-			float y = transform.position.y;
-			float dx = px - x;
-			float dy = py - y;
+			float dx = player.transform.position.x - transform.position.x;
+			float dy = player.transform.position.y - transform.position.y;;
 			float diag = Mathf.Sqrt (dx * dx + dy * dy);
+			SPEED = 5*Time.deltaTime;
 
-		rigidbody.velocity = new Vector2 (dx / diag * SPEED, dy / diag * SPEED);
+			transform.Translate(dx / diag * SPEED, dy / diag * SPEED,0);
 	}
 }

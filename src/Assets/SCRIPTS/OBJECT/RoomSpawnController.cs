@@ -4,7 +4,7 @@ using System.Collections;
 public class RoomSpawnController : MonoBehaviour {
 
 
-	Vector3 spawnOrigin;
+	public Vector3 spawnOrigin;
 	public GameObject[] toSpawn;
 
 
@@ -14,9 +14,9 @@ public class RoomSpawnController : MonoBehaviour {
 	}
 
 	void SpawnObject (GameObject g, Vector3 relativePosition){
-		Vector3 spawnPosition = relativePosition + relativePosition;
-		Instantiate(g, spawnPosition, Quaternion.identity);
-		EnemyLimiter s = (EnemyLimiter) g.GetComponent(typeof(EnemyLimiter));
+		Vector3 spawnPosition = spawnOrigin + relativePosition;
+		GameObject clone = (GameObject) Instantiate(g, spawnPosition, Quaternion.identity);
+		EnemyLimiter s = (EnemyLimiter) clone.GetComponent(typeof(EnemyLimiter));
 		s.setParentRoom(spawnOrigin);
 	}
 
