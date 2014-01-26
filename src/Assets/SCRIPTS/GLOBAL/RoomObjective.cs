@@ -3,7 +3,7 @@ using System.Collections;
 
 public class RoomObjective : MonoBehaviour {
 
-	enum items {nothing, sgcard, wizcard, aegis, iblade, ihilt};
+	enum items {nothing, sgcard, wizcard, aegis, iblade, ihilt, hglass, dice};
 
 	GameObject[] allRooms;
 	void Start () {

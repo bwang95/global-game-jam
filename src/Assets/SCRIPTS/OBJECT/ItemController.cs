@@ -23,6 +23,6 @@ public class ItemController : MonoBehaviour {
 
 	public void setType(int type){
 		this.type = type;
-		renderer.sprite = sprites [type];
+		gameObject.GetComponent<SpriteRenderer>().sprite = sprites[type];
 	}
 }

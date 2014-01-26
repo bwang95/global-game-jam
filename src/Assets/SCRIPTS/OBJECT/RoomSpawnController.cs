@@ -26,7 +26,7 @@ public class RoomSpawnController : MonoBehaviour {
 		GameObject[] inhabitants = new GameObject[nToSpawn];
 
 		for(int i = 0; i < nToSpawn; i++){
-			Vector3 pos = Random.insideUnitCircle * 5;
+			Vector3 pos = Random.insideUnitCircle * 4;
 			inhabitants[i] = SpawnObject(toSpawn[0], pos);
 		}
 
