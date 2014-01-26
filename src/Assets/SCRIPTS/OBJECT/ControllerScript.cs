@@ -151,7 +151,7 @@ public class ControllerScript : MonoBehaviour {
                     gameObject.GetComponent<SphereCollider>().radius);
                 for(int i = 0; i < collisions.Length; i++){
                     print(collisions[i]);
-                    if (collisions[i].gameObject.tag != "Player")
+                    if (collisions[i].gameObject.tag == "Enemy")
                     {
                         Destroy(collisions[i].gameObject);
                     }
