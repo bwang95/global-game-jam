@@ -9,10 +9,12 @@ public class GenericEnemyBehavior : MonoBehaviour {
 	private Vector2 point;
     public Sprite[] sprites;
 	private SpriteRenderer renderer;
+	public GameObject projectile;
 
 	private int character;
 	private int facing; //0 = up, 1 = down, 2 = right, 3 = left
 	private bool invisible;
+	float cooldown;
 
 	void Start(){
 		player = GameObject.FindGameObjectWithTag ("Player");
@@ -21,6 +23,7 @@ public class GenericEnemyBehavior : MonoBehaviour {
         renderer = gameObject.GetComponent<SpriteRenderer>();
 		character = 0;
 		facing = 1;
+		cooldown = Random.Range(3,4);
 	}
 	void Update () {
 		character = (int)(player.GetComponent<ControllerScript> ()).getChar ();
@@ -53,7 +56,13 @@ public class GenericEnemyBehavior : MonoBehaviour {
 						transform.Translate (dx / diag * SPEED, dy / diag * SPEED, 0);
 						break;
 				case Character.WIZARD:
-						invisible = false;
+					invisible = false;
+					if(cooldown <= 0){
+						GameObject clone = (GameObject)Instantiate(projectile, transform.position, Quaternion.identity);
+						clone.GetComponent<EnemyProjectile>().setVelocity(new Vector3(dx / diag * SPEED, dy / diag * SPEED, 0));
+						cooldown = Random.Range(3,4);
+					}
+					cooldown -= Time.deltaTime;
 					if(diag < 10){
 						dx *= -1;
 						dy *= -1;
