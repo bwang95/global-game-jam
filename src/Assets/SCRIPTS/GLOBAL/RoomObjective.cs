@@ -14,7 +14,7 @@ public class RoomObjective : MonoBehaviour {
 			print(allRooms.Length);
 			if(allRooms.Length > 0){
 				int no = allRooms.Length;
-				int a = (int) Mathf.Floor(Random.Range(0, no));
+				int a = (int) Mathf.Floor(Random.Range(1, no));
 				print ("a = " + a);
 				int b = a;
 				while (a == b){
@@ -24,7 +24,14 @@ public class RoomObjective : MonoBehaviour {
 
 				for (int n = 0; n < allRooms.Length; n++){
 					if(getController(allRooms[n]) == null){
-						//ignore
+						if( n == a){
+							a++;
+						}else if (n == b){
+							b++;
+						}
+						if(a == b){
+							a++;
+						}
 					}else if(n == a){
 						getController(allRooms[n]).setSpawnItem(1);
 					}else if(n == b){

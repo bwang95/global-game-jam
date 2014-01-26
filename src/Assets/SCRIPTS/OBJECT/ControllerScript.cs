@@ -82,7 +82,7 @@ public class ControllerScript : MonoBehaviour {
         renderer.sprite = sprites[spriteSet + facing];
 
 		if (Input.GetKeyDown(KeyCode.RightControl) || Input.GetKeyDown(KeyCode.LeftControl) ||
-            Input.GetKeyDown(KeyCode.RightCommand) || Input.GetKeyDown(KeyCode.LeftCommand)){
+            Input.GetKeyDown(KeyCode.RightCommand) || Input.GetKeyDown(KeyCode.LeftCommand) || Input.GetKeyDown (KeyCode.Q)){
 			useInv();
 		}
 
@@ -97,8 +97,9 @@ public class ControllerScript : MonoBehaviour {
             return;
         }else if(item == 1 || item == 2){
 			unlocked[item] = true;
-		}
+		}else{
 			inv = item;
+		}
 	}
 
 	public int getInv(){
@@ -112,16 +113,20 @@ public class ControllerScript : MonoBehaviour {
                 break;
             case 3:
                 hitpoints++;
+				setInv(0);
                 break;
             case 6:
                 invul = Time.time;
                 invul = 10;
+				setInv(0);
                 break;
             case 7:
                 //Set speed and such
+				setInv(0);
                 break;
             case 8:
                 setInv((int)(Random.value * 9));
+				setInv(0);
                 break;
             //case 9:
                 
@@ -129,7 +134,7 @@ public class ControllerScript : MonoBehaviour {
 
 		//WRITE EFFECTS HERE.
 		}
-        setInv(0);
+        
 
 	}
 
