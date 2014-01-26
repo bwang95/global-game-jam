@@ -9,6 +9,7 @@ public class ControllerScript : MonoBehaviour {
 	//unlocked characters
 	bool[] unlocked = new bool[3];
 	Character currentChar = Character.MIDAS;
+	private int inv;
 
     public int speed = 20;
     private SpriteRenderer renderer;
@@ -44,14 +45,30 @@ public class ControllerScript : MonoBehaviour {
             renderer.sprite = down;
         }
 
-		if (Input.GetKey (KeyCode.Alpha1))
+		if (Input.GetKeyDown (KeyCode.Alpha1))
 			currentChar = Character.MIDAS;
-		else if (Input.GetKey (KeyCode.Alpha2))
+		else if (Input.GetKeyDown (KeyCode.Alpha2))
 			currentChar = Character.WIZARD;
-		else if (Input.GetKey (KeyCode.Alpha3))
+		else if (Input.GetKeyDown (KeyCode.Alpha3))
 			currentChar = Character.SHADOW;
 
+		if (Input.GetKeyDown(KeyCode.RightControl)){
+			useInv();
+		}
+
         rigidbody.velocity = new Vector2(x * speed, y * speed);
+	}
+
+	public void setInv(int item){
+		inv = item;
+	}
+
+	private void useInv(){
+		switch(inv){
+		case 0:
+			break;
+		//WRITE EFFECTS HERE.
+		}
 	}
 
 	public Character getChar(){
