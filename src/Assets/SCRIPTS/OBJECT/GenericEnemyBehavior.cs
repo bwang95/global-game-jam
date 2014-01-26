@@ -10,33 +10,16 @@ public class GenericEnemyBehavior : MonoBehaviour {
 	private bool chasing = false;
 	private double duration = 0.0;
 	private static Random r = new Random();
-<<<<<<< HEAD
-	private int SPEED = 5;
-=======
 	private const int SPEED = 5;
 	private EnemyLimiter s;
->>>>>>> 843a302d7466e73f0da6eab66c3024e51eb64437
 	
 	void Start(){
 		s = (EnemyLimiter) transform.parent.GetComponent(typeof(EnemyLimiter));
 		player = GameObject.FindGameObjectWithTag ("Player");
 	}
 	void Update () {
-<<<<<<< HEAD
-		//transform.position.x;
-		//transform.rotation.z;
-		//Random.value;
-		/*
-		int facing = transform.rotation.z;
-		double x = r.nextDouble ();
-		double thresh = 0.0;
-		*/
-		//if (playerWithinBounds ())
-			//return;
-=======
-		if (s.playerWithinBounds ())
+		if (!s.playerWithinBounds ())
 			return;
->>>>>>> 843a302d7466e73f0da6eab66c3024e51eb64437
 		//put boundaries check lol
 
 			float px = player.transform.position.x;

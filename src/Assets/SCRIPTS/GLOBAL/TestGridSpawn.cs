@@ -47,7 +47,7 @@ public class TestGridSpawn : MonoBehaviour {
             return;
         }
 
-        int numDoors = randomIndex();
+        int numDoors = random(0, 8);
         int r; int[] c;
         print("Instantiating room #" + roomCounter + " at coord " + x + " " + y + " Type: " + numDoors + " Out: " + doorNum);
         switch (numDoors)
@@ -55,21 +55,24 @@ public class TestGridSpawn : MonoBehaviour {
             case 0 :
                 Instantiate(rooms[0], spawn, Quaternion.AngleAxis(((doorNum + 1) % 4) * 90, zVec));
                 return;
-            case 1 :
-                r = (doorNum + (int)(Random.value * (doorNum - 2 < 0 ? 0 : doorNum - 2))) % 4;
+            case 1 : case 2 :
+                r = (doorNum + (int)(Random.value * 2)) % 4;
                 Instantiate(rooms[1], spawn, Quaternion.AngleAxis(r * 90, zVec));
 
                 c = getXY(r + 1);
+                printWhere(r + 1);
                 spawnRooms(x + c[0], y + c[1], r + 1);
 
                 c = getXY(r + 2);
+                printWhere(r + 2);
                 spawnRooms(x + c[0], y + c[1], r + 2);
                 return;
-            case 2 :
-                r = (doorNum + (int)(Random.value * (4 - doorNum))) % 4;
-                Instantiate(rooms[1], spawn, Quaternion.AngleAxis(r * 90, zVec));
+            case 3 : case 4: case 7 :
+                r = (doorNum - 1 + (int) (Random.value * 3)) % 4;
+                Instantiate(rooms[2], spawn, Quaternion.AngleAxis(r * 90, zVec));
 
                 c = getXY(r + 1);
+                printWhere(r + 1);
                 spawnRooms(x + c[0], y + c[1], r + 1);
 
                 c = getXY(r + 2);
@@ -78,7 +81,7 @@ public class TestGridSpawn : MonoBehaviour {
                 c = getXY(r + 3);
                 spawnRooms(x + c[0], y + c[1], r + 3);
                 return;
-            case 3 :
+            case 5 : case 6 :
                 Instantiate(rooms[3], spawn, Quaternion.identity);
                 spawnRooms(x, y - 1, 1);
                 spawnRooms(x + 1, y, 2);
@@ -110,5 +113,26 @@ public class TestGridSpawn : MonoBehaviour {
         }
         return new int[] { 0, 0 };
     }
+
+    void printWhere(int direction)
+    {
+        direction = direction % 4;
+        switch (direction)
+        {
+            case 0:
+                print("MakingLeft");
+                break;
+            case 1:
+                print("MakingDown");
+                break;
+            case 2:
+                print("MakingRight");
+                break;
+            case 3:
+                print("MakingUp");
+                break;
+        }
+    }
+
     
 }
