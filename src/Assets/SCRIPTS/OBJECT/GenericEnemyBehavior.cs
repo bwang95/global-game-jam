@@ -15,13 +15,20 @@ public class GenericEnemyBehavior : MonoBehaviour {
 	void Update () {
 		if (!s.playerWithinBounds ())
 			return;
-			//put boundaries check
-
+		/*
+		switch(playerChar){
+		case MIDAS:
+		*/
 			float dx = player.transform.position.x - transform.position.x;
 			float dy = player.transform.position.y - transform.position.y;;
 			float diag = Mathf.Sqrt (dx * dx + dy * dy);
 			SPEED = 5*Time.deltaTime;
 
 			transform.Translate(dx / diag * SPEED, dy / diag * SPEED,0);
+		/*
+			break;
+		case WIZARD:
+			//
+		*/
 	}
 }
