@@ -37,8 +37,8 @@ public class ControllerScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-		if (lives < 3){
-			Application.LoadLevel(4);
+		if (lives <= 0){
+			Application.LoadLevel(3);
 		}
         if (hitpoints <= 0)
         {
