@@ -92,17 +92,16 @@ public class ControllerScript : MonoBehaviour {
         if((item == 4 && inv == 5) || (item == 5 && inv == 4)){
             inv = 6;
             return;
-        }
-		inv = item;
+        }else if(item == 1 || item == 2){
+			unlocked[item] = true;
+		}
+			inv = item;
 	}
 
 	private void useInv(){
 		switch(inv){
 		    case 0:
                 print("Thou dost not have an object at thy disposal");
-                break;
-            case 1: case 2:
-                unlocked[inv] = true;
                 break;
             case 3:
                 hitpoints++;
