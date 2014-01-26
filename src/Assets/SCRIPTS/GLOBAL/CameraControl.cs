@@ -4,15 +4,20 @@ using System.Collections;
 public class CameraControl : MonoBehaviour {
 
 	private Vector3 endLoc;
-	public GameObject player;
+	public GameObject player = null;
 	private const int speedInv = 25;
 
 	void Start () {
 		setPosition(new Vector3(0,0,-5));
 		endLoc = Camera.main.transform.position;
+		player = GameObject.FindGameObjectWithTag("Player");
 	}
 
 	void Update () {
+
+		if(player == null){
+			player = GameObject.FindGameObjectWithTag("Player");
+		}
 
 		endLoc = findClosestRoom();
 
