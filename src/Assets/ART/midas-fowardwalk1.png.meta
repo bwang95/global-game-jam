@@ -1,9 +1,13 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
+guid: 659319669363fe442b2d8cdeccee2952
+=======
+<<<<<<< HEAD
 guid: f20d48ac9287c57489bcd43a41e3f28a
 =======
 guid: 5b7d590eba8aeb7418f5555bc6d661b0
 >>>>>>> f2b6cb947dee5f70aee66e6d656cdabe25d7c50b
+>>>>>>> aef857ef78b31a2eae453de7622db9f074b4e0d5
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -43,14 +47,20 @@ TextureImporter:
   alphaIsTransparency: 1
   textureType: 8
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> aef857ef78b31a2eae453de7622db9f074b4e0d5
   buildTargetSettings:
   - buildTarget: iPhone
     maxTextureSize: 1024
     textureFormat: -2
     compressionQuality: 50
+<<<<<<< HEAD
+=======
 =======
   buildTargetSettings: []
 >>>>>>> f2b6cb947dee5f70aee66e6d656cdabe25d7c50b
+>>>>>>> aef857ef78b31a2eae453de7622db9f074b4e0d5
   spriteSheet:
     sprites: []
   spritePackingTag: 

@@ -5,14 +5,16 @@ public class PROTAL : MonoBehaviour {
 
 	ControllerScript player;
 	public GameObject portal;
-	bool isWinnable = false;
+	public bool isWinnable = false;
 
-	void Start () {
-		player = GameObject.FindGameObjectWithTag("Player").GetComponent<ControllerScript>();
+	void Start(){
+		isWinnable = false;
 	}
-	
 	// Update is called once per frame
 	void Update () {
+		if (player == null){
+			player = GameObject.FindGameObjectWithTag("Player").GetComponent<ControllerScript>();
+		}
 		if(!isWinnable){
 			for (int i = 0; i < player.unlocked.Length; i++){
 				if(!player.unlocked[i]) return;
@@ -21,10 +23,10 @@ public class PROTAL : MonoBehaviour {
 			Instantiate(portal, transform.position, Quaternion.identity);
 			isWinnable = true;
 		}else{
-			Collider[] collisions = Physics.OverlapSphere(transform.position, 5);
+			Collider[] collisions = Physics.OverlapSphere(transform.position, 3);
 			for (int n = 0; n < collisions.Length; n++){
 				if(collisions[n].gameObject.tag == "Player"){
-					Application.LoadLevel(5);
+					Application.LoadLevel(4);
 				}
 			}
 		}
