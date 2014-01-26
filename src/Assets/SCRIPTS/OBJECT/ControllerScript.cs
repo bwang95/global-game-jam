@@ -28,6 +28,11 @@ public class ControllerScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (hitpoints <= 0)
+        {
+            hitpoints = 1;
+            
+        }
         float x = 0, y = 0;
         if (Time.time > inv + 10)
             inv = -1;
