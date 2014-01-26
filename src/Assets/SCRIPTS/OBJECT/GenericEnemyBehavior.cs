@@ -3,15 +3,17 @@ using System.Collections;
 
 public class GenericEnemyBehavior : MonoBehaviour {
 
-	public GameObject player;
-	private float SPEED;
-	public EnemyLimiter s;
+	private GameObject player;
+	public float SPEED;
+	private EnemyLimiter s;
     public Sprite up, down, left, right;
-	
+	private SpriteRenderer renderer;
+
 	void Start(){
 		player = GameObject.FindGameObjectWithTag ("Player");
-		s = (EnemyLimiter) gameObject.GetComponent(typeof(EnemyLimiter));
+		s = gameObject.GetComponent<EnemyLimiter>();
 		SPEED = 5*Time.deltaTime;
+        renderer = gameObject.GetComponent<SpriteRenderer>();
 	}
 	void Update () {
 		if (!s.playerWithinBounds ())
@@ -26,28 +28,37 @@ public class GenericEnemyBehavior : MonoBehaviour {
             if (Mathf.Abs(dy / dx) >= 1)
             {
                 if(dy > 0)
-                   gameObject.GetComponent<SpriteRenderer>().sprite = up;
+                   renderer.sprite = up;
                 else
-                   gameObject.GetComponent<SpriteRenderer>().sprite = down;
+                   renderer.sprite = down;
             }
             else
             {
                 if (dx > 0)
-                    gameObject.GetComponent<SpriteRenderer>().sprite = right;
+                    renderer.sprite = right;
                 else
-                    gameObject.GetComponent<SpriteRenderer>().sprite = left;
+                    renderer.sprite = left;
             }
 
 			float diag = Mathf.Sqrt (dx * dx + dy * dy);
-			SPEED = 5*Time.deltaTime;
-            
-            
+			SPEED = 5 * Time.deltaTime;
 
-			transform.Translate(dx / diag * SPEED, dy / diag * SPEED,0);
-		/*
-			break;
-		case WIZARD:
-			//
-		*/
+			switch ((player.GetComponent<ControllerScript>()).getChar()) {
+				case Character.MIDAS:
+						dx = player.transform.position.x - transform.position.x;
+						dy = player.transform.position.y - transform.position.y;
+						diag = Mathf.Sqrt (dx * dx + dy * dy);
+						SPEED = 5 * Time.deltaTime;
+
+						transform.Translate (dx / diag * SPEED, dy / diag * SPEED, 0);
+		
+						break;
+				case Character.WIZARD:
+
+						break;
+				case Character.SHADOW:
+
+						break;
+		}
 	}
 }
