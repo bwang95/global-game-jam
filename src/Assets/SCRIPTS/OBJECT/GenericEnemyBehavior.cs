@@ -18,37 +18,31 @@ public class GenericEnemyBehavior : MonoBehaviour {
 	void Update () {
 		if (!s.playerWithinBounds ())
 			return;
-		/*
-		switch(playerChar){
-		case MIDAS:
-		*/
+
 			float dx = player.transform.position.x - transform.position.x;
 			float dy = player.transform.position.y - transform.position.y;
 
-            if (Mathf.Abs(dy / dx) >= 1)
-            {
-                if(dy > 0)
-                   renderer.sprite = up;
-                else
-                   renderer.sprite = down;
-            }
-            else
-            {
-                if (dx > 0)
-                    renderer.sprite = right;
-                else
-                    renderer.sprite = left;
-            }
+            
 
 			float diag = Mathf.Sqrt (dx * dx + dy * dy);
 			SPEED = 5 * Time.deltaTime;
 
 			switch ((player.GetComponent<ControllerScript>()).getChar()) {
 				case Character.MIDAS:
-						dx = player.transform.position.x - transform.position.x;
-						dy = player.transform.position.y - transform.position.y;
-						diag = Mathf.Sqrt (dx * dx + dy * dy);
-						SPEED = 5 * Time.deltaTime;
+						if (Mathf.Abs(dy / dx) >= 1)
+						{
+							if(dy > 0)
+								renderer.sprite = up;
+							else
+								renderer.sprite = down;
+						}
+						else
+						{
+							if (dx > 0)
+								renderer.sprite = right;
+							else
+								renderer.sprite = left;
+						}
 
 						transform.Translate (dx / diag * SPEED, dy / diag * SPEED, 0);
 		
