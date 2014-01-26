@@ -11,6 +11,8 @@ public class ControllerScript : MonoBehaviour {
 	Character currentChar = Character.MIDAS;
 	private int inv;
 
+    public int hitpoints = 1;
+    private float invul = -1;
     public int speed = 20;
     private int facing = 1;
     private SpriteRenderer renderer;
@@ -19,14 +21,15 @@ public class ControllerScript : MonoBehaviour {
     void Start()
     {
         renderer = gameObject.GetComponent<SpriteRenderer>();
-        for (int k = 0; k < unlocked.Length; k++)
-            unlocked[k] = true;
+        unlocked[0] = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         float x = 0, y = 0;
+        if (Time.time > inv + 10)
+            inv = -1;
         if (Input.GetKey(KeyCode.A))
         {
             facing = 2;
@@ -60,10 +63,11 @@ public class ControllerScript : MonoBehaviour {
         else if (Input.GetKey(KeyCode.Alpha3) && unlocked[2])
             currentChar = Character.SHADOW;
         
-        int spriteSet = getCharIndex(currentChar) * 4;
+        int spriteSet = getCharIndex(currentChar) * 5;
         renderer.sprite = sprites[spriteSet + facing];
 
-		if (Input.GetKeyDown(KeyCode.RightControl)){
+		if (Input.GetKeyDown(KeyCode.RightControl) || Input.GetKeyDown(KeyCode.LeftControl) ||
+            Input.GetKeyDown(KeyCode.RightCommand) || Input.GetKeyDown(KeyCode.LeftCommand)){
 			useInv();
 		}
 
@@ -71,15 +75,40 @@ public class ControllerScript : MonoBehaviour {
 	}
 
 	public void setInv(int item){
+        if((item == 4 && inv == 5) || (item == 5 && inv == 4)){
+            inv = 6;
+            return;
+        }
 		inv = item;
 	}
 
 	private void useInv(){
 		switch(inv){
-		case 0:
-			break;
+		    case 0:
+                print("Thou dost not have an object at thy disposal");
+                break;
+            case 1: case 2:
+                unlocked[inv] = true;
+                break;
+            case 3:
+                hitpoints++;
+                break;
+            case 6:
+                invul = Time.time;
+                break;
+            case 7:
+                //Set speed and such
+                break;
+            case 8:
+                setInv((int)(Random.value * 9));
+                break;
+            //case 9:
+                
+              //  break;
+
 		//WRITE EFFECTS HERE.
 		}
+        setInv(0);
 	}
 
 	public Character getChar(){
