@@ -13,11 +13,11 @@ public class ControllerScript : MonoBehaviour {
 
 	public int lives;
     public int hitpoints = 1;
-    private float invul = -1;
-    private float invulDuration = -1;
-    public int speed = 20;
+    public float invul = 0;
+    public int speed = 15;
     private int facing = 1;
     private SpriteRenderer renderer;
+	bool flash = false;
     public Sprite[] sprites;
 	public Sprite[] enemySprites;
 	private Vector3[] abuseBallLoc = {new Vector3(0,4,0), new Vector3(0, -4, 0), new Vector3(-3,0,0), new Vector3(3,0,0)};
@@ -26,7 +26,6 @@ public class ControllerScript : MonoBehaviour {
     {
         renderer = gameObject.GetComponent<SpriteRenderer>();
         unlocked[0] = true;
-		unlocked [2] = true;
 		//
 		gameObject.GetComponent<ParticleSystem> ().renderer.sortingLayerName = "Midas";
 		//
@@ -36,6 +35,9 @@ public class ControllerScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+		if (lives < 3){
+			//endgameconditions
+		}
         if (hitpoints <= 0)
         {
 			lives--;
@@ -43,8 +45,6 @@ public class ControllerScript : MonoBehaviour {
             reset();
         }
         float x = 0, y = 0;
-        if (Time.time > invul + invulDuration)
-            invul = -1;
         if (Input.GetKey(KeyCode.A))
         {
             facing = 2;
@@ -81,8 +81,14 @@ public class ControllerScript : MonoBehaviour {
 			currentChar = Character.SHADOW;
 		}
         
-        int spriteSet = getCharIndex(currentChar) * 5;
-        renderer.sprite = sprites[spriteSet + facing];
+		if(invul > 0 && !flash){
+			renderer.sprite = null;
+			flash = true;
+		}else{
+        	int spriteSet = getCharIndex(currentChar) * 5;
+        	renderer.sprite = sprites[spriteSet + facing];
+			flash = false;
+		}
 
 		if (Input.GetKeyDown(KeyCode.RightControl) || Input.GetKeyDown(KeyCode.LeftControl) ||
             Input.GetKeyDown(KeyCode.RightCommand) || Input.GetKeyDown(KeyCode.LeftCommand) || Input.GetKeyDown (KeyCode.Q)){
@@ -92,6 +98,9 @@ public class ControllerScript : MonoBehaviour {
 		setAbuseBallLoc(facing);
 
         rigidbody.velocity = new Vector2(x * speed, y * speed);
+		if(invul > 0){
+			invul -= Time.deltaTime;
+		}
 	}
 
 	public void setInv(int item){
@@ -119,7 +128,6 @@ public class ControllerScript : MonoBehaviour {
 				setInv(0);
                 break;
             case 6:
-                invul = Time.time;
                 invul = 10;
 				setInv(0);
                 break;
@@ -201,9 +209,13 @@ public class ControllerScript : MonoBehaviour {
     {
         if (c.gameObject.tag.Equals("Enemy"))
         {
-            hitpoints--;
-            invul = Time.time;
-            invulDuration = 1;
+            if(invul > 0){
+				Destroy(c.gameObject);
+			}else{
+				hitpoints -=1;
+				invul += 3;
+				Destroy(c.gameObject);
+			}
         }
     }
 }

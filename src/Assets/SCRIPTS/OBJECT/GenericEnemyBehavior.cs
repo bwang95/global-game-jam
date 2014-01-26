@@ -61,7 +61,7 @@ public class GenericEnemyBehavior : MonoBehaviour {
 					transform.Translate (dx / diag * SPEED, dy / diag * SPEED, 0);
 					break;
 				case Character.SHADOW:
-					if (diag < 10){
+					if (diag < 7){
 						invisible = true;
 						break;
 					} else {
