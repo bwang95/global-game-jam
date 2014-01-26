@@ -11,6 +11,7 @@ public class ControllerScript : MonoBehaviour {
 	Character currentChar = Character.MIDAS;
 
     public int speed = 20;
+    private int facing = 1;
     private SpriteRenderer renderer;
     public Sprite[] sprites;
 
@@ -25,27 +26,26 @@ public class ControllerScript : MonoBehaviour {
     void Update()
     {
         float x = 0, y = 0;
-        int spriteSet = getCharIndex(currentChar) * 4;
         if (Input.GetKey(KeyCode.A))
         {
+            facing = 2;
             x -= 1;
-            renderer.sprite = sprites[spriteSet + 2];
         }
         else if (Input.GetKey(KeyCode.D))
         {
             x += 1;
-            renderer.sprite = sprites[spriteSet + 3];
+            facing = 3;
         }
 
         if (Input.GetKey(KeyCode.W))
         {
             y += 1;
-            renderer.sprite = sprites[spriteSet];
+            facing = 0;
         }
         else if (Input.GetKey(KeyCode.S))
         {
             y -= 1;
-            renderer.sprite = sprites[spriteSet + 1];
+            facing = 1;
         }
 
         if (Input.GetKey(KeyCode.Space))
@@ -54,20 +54,14 @@ public class ControllerScript : MonoBehaviour {
         }
 
         if (Input.GetKey(KeyCode.Alpha1) && unlocked[0])
-        {
             currentChar = Character.MIDAS;
-            renderer.sprite = sprites[1];
-        }
         else if (Input.GetKey(KeyCode.Alpha2) && unlocked[1])
-        {
             currentChar = Character.WIZARD;
-            renderer.sprite = sprites[5];
-        }
         else if (Input.GetKey(KeyCode.Alpha3) && unlocked[2])
-        {
             currentChar = Character.SHADOW;
-            renderer.sprite = sprites[9];
-        }
+        
+        int spriteSet = getCharIndex(currentChar) * 4;
+        renderer.sprite = sprites[spriteSet + facing];
 
         rigidbody.velocity = new Vector2(x * speed, y * speed);
 	}
