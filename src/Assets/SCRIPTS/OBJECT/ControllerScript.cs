@@ -155,10 +155,11 @@ public class ControllerScript : MonoBehaviour {
 
     void attack()
     {
+		Collider[] collisions;
         switch (currentChar)
         {
             case Character.MIDAS :
-                Collider[] collisions = Physics.OverlapSphere(gameObject.GetComponent<SphereCollider>().center + transform.position, 
+                collisions = Physics.OverlapSphere(gameObject.GetComponent<SphereCollider>().center + transform.position, 
                     gameObject.GetComponent<SphereCollider>().radius);
                 for(int i = 0; i < collisions.Length; i++){
                     print(collisions[i]);
@@ -169,12 +170,21 @@ public class ControllerScript : MonoBehaviour {
                 }
                 return;
             case Character.WIZARD :
-                return;
-            case Character.SHADOW :
-                return;
-        }
-    }
 
+                return;
+			case Character.SHADOW :   
+				collisions = Physics.OverlapSphere(transform.position, 5);
+				for(int i = 0; i < collisions.Length; i++){
+					print(collisions[i]);
+					if (collisions[i].gameObject.tag == "Enemy")
+					{
+						Destroy(collisions[i].gameObject);
+					}
+				}
+				return;
+		}
+	}
+	
 	void setAbuseBallLoc(int index){
 		gameObject.GetComponent<SphereCollider>().center = abuseBallLoc[index];
 	}
