@@ -30,7 +30,7 @@ public class RoomSpawnController : MonoBehaviour {
 			inhabitants[i] = SpawnObject(toSpawn[0], pos);
 		}
 
-		RoomItemController s = (RoomItemController) gameObject.GetComponent(typeof(RoomItemController));
+		RoomItemController s = gameObject.GetComponent<RoomItemController>();
 		s.setSpawnStatus(inhabitants);
 	}
 
