@@ -19,6 +19,7 @@ public class ControllerScript : MonoBehaviour {
     private int facing = 1;
     private SpriteRenderer renderer;
     public Sprite[] sprites;
+	public Sprite[] enemySprites;
 	private Vector3[] abuseBallLoc = {new Vector3(0,4,0), new Vector3(0, -4, 0), new Vector3(-3,0,0), new Vector3(3,0,0)};
 
     void Start()
@@ -71,12 +72,14 @@ public class ControllerScript : MonoBehaviour {
             attack();
         }
 
-        if (Input.GetKey(KeyCode.Alpha1) && unlocked[0])
-            currentChar = Character.MIDAS;
-        else if (Input.GetKey(KeyCode.Alpha2) && unlocked[1])
-            currentChar = Character.WIZARD;
-        else if (Input.GetKey(KeyCode.Alpha3) && unlocked[2])
-            currentChar = Character.SHADOW;
+        if (Input.GetKey (KeyCode.Alpha1) && unlocked [0]) {
+			currentChar = Character.MIDAS;
+
+		} else if (Input.GetKey (KeyCode.Alpha2) && unlocked [1]) {
+			currentChar = Character.WIZARD;
+		} else if (Input.GetKey (KeyCode.Alpha3) && unlocked [2]) {
+			currentChar = Character.SHADOW;
+		}
         
         int spriteSet = getCharIndex(currentChar) * 5;
         renderer.sprite = sprites[spriteSet + facing];
